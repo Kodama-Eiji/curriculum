@@ -1,0 +1,32 @@
+問１
+ルートブリッジは、プライオリティの一番低いswitch3。
+
+問２
+まず、ルートブリッジの全てのポートは、指定ポート（DP）になるため、
+switch3のE0/1とE0/2はDP。
+
+①switch3→1→2→4のルートパスコストを考える。
+・switch1 F0/2 100
+・switch2 F0/1 119
+・switch4 E0/1 219
+②switch3→4→2→1のルートパスコストを考える。
+・switch4 E0/2 100
+・switch2 F0/2 200
+・switch1 F0/1 219
+①と②を比較して、同スイッチ内でパスコストが小さい方がルートポート（RP）になる。
+したがって、switch1 F0/2、switch2 F0/1、switch4 E0/2はRP。
+
+RPの向かい側はDPになるのでswitch1 F0/1はDPとなる。
+
+switch2 F0/2とswitch4 E0/1が残っている。
+それぞれの送信元ブリッジIDを比較する。
+switch2 F0/2の送信元ブリッジIDは、8193。（switch4）
+switch4 E0/1の送信元ブリッジIDは、20481。（switch2）
+送信元ブリッジIDが小さい方がDPとなるので、switch2 F0/2はDP。
+最後の一つであるswitch4 E0/1はブロッキングポート（BP）となる。
+
+switch1 F0/1 DP, F0/2 RP
+switch2 F0/1 RP, F0/2 DP
+switch3 E0/1 DP, E0/2 DP
+switch4 E0/1 BP, E0/2 RP
+ 
