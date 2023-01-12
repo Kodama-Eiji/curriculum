@@ -19,14 +19,15 @@ switch3のE0/1とE0/2はDP。
 RPの向かい側はDPになるのでswitch1 F0/1はDPとなる。
 
 switch2 F0/2とswitch4 E0/1が残っている。
-それぞれの送信元ブリッジIDを比較する。
-switch2 F0/2の送信元ブリッジIDは、8193。（switch4）
-switch4 E0/1の送信元ブリッジIDは、20481。（switch2）
-送信元ブリッジIDが小さい方がDPとなるので、switch2 F0/2はDP。
-最後の一つであるswitch4 E0/1はブロッキングポート（BP）となる。
+ルートパスコストの小さいBPDUを送信するポートがしてポートになる。
+switch2 F0/2が送信するBPDUのルートコスはト119。
+switch4 E0/1が送信するBPDUのルートコストは100。
+よって
+switch4 E0/1はDP。
+最後の一つであるswitch2 F0/2はブロッキングポート（BP）となる。
 
 switch1 F0/1 DP, F0/2 RP
-switch2 F0/1 RP, F0/2 DP
+switch2 F0/1 RP, F0/2 BP
 switch3 E0/1 DP, E0/2 DP
-switch4 E0/1 BP, E0/2 RP
+switch4 E0/1 DP, E0/2 RP
  
